@@ -1,0 +1,458 @@
+<fa-layout *ngIf="partido != null">
+  <!-- Page Header -->
+
+  <div class="page-header row no-gutters py-4">
+    <div class="col-md-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">Partidos</span>
+
+      <div class="form-row">
+        <h3 class="ml-1 page-title col-md">Editar Partido</h3>
+        <div class="text-right col-md-2">
+          <button
+            type="button"
+            class="btn btn-accent"
+            [disabled]="updateButon.isDisabled"
+            (click)="savePartido($event)"
+            #updateButon
+          >
+            Guardar
+
+            <i
+              *ngIf="updateButon.isLoading"
+              class="fas fa-circle-notch fa-spin ml-1"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Page Header -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <!-- Add New Post Form -->
+
+      <div class="card card-small mb-3">
+        <div class="card-body">
+          <form class="add-new-post">
+            <div class="row">
+              <div class="col-md-3">
+                <!-- <label for="equipo">Equipo</label> -->
+                <span class="mr-1 mt-1"></span>
+                <div class="form-control form-control-lg mb-3">
+                  <select class="custom-select" name="equipo" disabled>
+                    <option>
+                      {{ nombreEquipoSeleccionado }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <span class="mr-1 mt-1">Rival</span>
+                <input
+                  class="form-control form-control-lg mb-3"
+                  type="text"
+                  placeholder="Rival"
+                  [(ngModel)]="partido.rival"
+                  name="rival"
+                />
+              </div>
+              <div class="col-md-3">
+                <span class="mr-1 mt-1">Ubicación</span>
+                <input
+                  class="form-control form-control-lg mb-3"
+                  type="text"
+                  placeholder="Cancha"
+                  [(ngModel)]="partido.cancha"
+                  name="cancha"
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <!-- <i class="material-icons mr-1 mt-0">calendar_today</i -->
+                <span class="mr-1 mt-1">Fecha Partido</span>
+                <input
+                  type="date"
+                  class="form-control form-control-lg mb-3"
+                  [(ngModel)]="date"
+                  name="date"
+                />
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <!-- <label for="equipo">Equipo</label>
+
+              <select class="custom-select" name="equipo" disabled>
+                <option>
+                  {{ nombreEquipoSeleccionado }}
+                </option>
+              </select> -->
+            </div>
+
+            <div class="form-row">
+              <div>Resultado</div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Tala:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.resultado"
+                  name="resultado"
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">{{ partido.rival }}:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.resultadoRival"
+                  name="resultadoRival"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <!-- <div class="form-group col-md-3">
+                <i class="material-icons mr-1 mt-0">calendar_today</i
+                ><span class="mr-1 mt-1">Fecha Entrenamiento:</span>
+                <input
+                  type="date"
+                  class="form-control col-md-6"
+                  [(ngModel)]="date"
+                  name="date"
+                />
+              </div> -->
+
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Scrums:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.scrums"
+                  name="scrums"
+                />
+              </div>
+
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Lines:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.lines"
+                  name="lines"
+                />
+              </div>
+
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Amarillas:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.amarillas"
+                  name="amarillas"
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Rojas:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.rojas"
+                  name="rojas"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Tackles:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.tackles"
+                  name="tackles"
+                />
+              </div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Penales:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.penales"
+                  name="penales"
+                />
+              </div>
+
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Rucks:</span>
+                <input
+                  type="text"
+                  placeholder="0"
+                  (keypress)="numberOnly($event)"
+                  class="form-control col-md-6"
+                  [(ngModel)]="partido.rucks"
+                  name="rucks"
+                />
+              </div>
+              <div class="form-group col-md-2"></div>
+            </div>
+          </form>
+          <div class="row"></div>
+        </div>
+      </div>
+
+      <!-- / Add New Post Form -->
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+      <!-- / Incidencias Overview -->
+      <div class="card card-small lo-stats">
+        <div class="card-title p-0 text-center mt-4">
+          <div class="row">
+            <h5>Incidencias</h5>
+            <button
+              class="btn btn-sm btn-accent m-auto"
+              (click)="addIncidencia()"
+            >
+              Agregar
+            </button>
+          </div>
+        
+        </div>
+
+        <div class="card-body p-0">
+          <table
+            datatable
+            id="datatableIncidencias"
+            [dtOptions]="dtOptions[2]"
+            [dtTrigger]="dataTableTriggerIncidencias"
+            class="file-manager file-manager-list d-none table-responsive"
+          >
+            <thead>
+              <tr>
+                <th style="width: 10px">Minuto</th>
+                <th style="width: 30px">Incidencia</th>
+                <th style="width: 30px">Jugador</th>
+                <th style="width: 30px">Convertido?</th>
+                <th style="width: 30px">Convertido Por</th>
+                <th style="width: 30px">Acción</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let incidencia of partido.incidencias; let i = index">
+                <td style="width: 40px">
+                  <input
+                    (keypress)="numberOnly($event)"
+                    style="width: 50px"
+                    [(ngModel)]="incidencia.minuto"
+                  />
+                </td>
+
+                <td>
+                  <select
+                    style="width: 100px"
+                    class="form-select"
+                    [(ngModel)]="incidencia.incidencia"
+                  >
+                    <option value="try">Try</option>
+                    <option value="conversion">Conversion</option>
+                    <option value="penal">Penal</option>
+                    <option value="try-penal">Try Penal</option>
+                  </select>
+                </td>
+
+                <td>
+                  <select
+                    style="width: 200px"
+                    *ngIf="partido.jugadores.length > 0"
+                    class="form-select"
+                    [(ngModel)]="incidencia.jugador"
+                  >
+                    <option value="">Vacío</option>
+                    <option
+                      *ngFor="let jugador_ of partido.jugadores"
+                      [value]="jugador_.id"
+                    >
+                      {{ jugador_.firstName + " " + jugador_.lastName }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    [checked]="
+                      incidencia.convertido == undefined
+                        ? false
+                        : incidencia.convertido
+                    "
+                    (change)="incidencia.convertido = $event.target.checked"
+                  />
+                </td>
+
+                <td>
+                  <select
+                    style="width: 200px"
+                    *ngIf="partido.jugadores.length > 0"
+                    class="form-select"
+                    [(ngModel)]="incidencia.convertidoPor"
+                  >
+                    <option value="">Vacío</option>
+                    <option
+                      *ngFor="let jugador_ of partido.jugadores"
+                      [value]="jugador_.id"
+                    >
+                      {{ jugador_.firstName + " " + jugador_.lastName }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="eliminarIncidencia(i)"
+                  >
+                    <!-- <i class="bi bi-trash text-danger"></i> -->
+                    <i class="material-icons">delete</i>
+                    <!-- Bootstrap's delete/trash icon -->
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 mb-4">
+      <div class="card card-small lo-stats">
+        <div class="card-title p-0 text-center mt-4">
+          <h5>Jugadores</h5>
+        </div>
+
+        <div class="card-body p-0">
+          <table
+            datatable
+            id="datatableJugadores"
+            [dtOptions]="dtOptions[0]"
+            [dtTrigger]="dataTableTriggerJugadores"
+            class="file-manager file-manager-list d-none table-responsive"
+          >
+            <thead>
+              <tr>
+                <th></th>
+
+                <th>Jugador</th>
+
+                <th>Posición</th>
+
+                <th>Tiempo Juego(hh:mm)</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let user of allUsers | async">
+                <td>
+                  <input
+                    type="checkbox"
+                    name="websitecheck"
+                    (change)="changed(user)"
+                    [checked]="user.isChecked"
+                    value="{{ user.isChecked }}"
+                  />
+                </td>
+
+                <td>
+                  {{ user.firstName + " " + user.lastName }}
+                </td>
+
+                <td>{{ user.posicion }}</td>
+
+                <td>{{ user.tiempoJuegoStr }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 mb-4">
+      <div class="card card-small lo-stats">
+        <div class="card-title p-0 text-center mt-4">
+          <h5>Formación</h5>
+        </div>
+
+        <div class="card-body p-0">
+          <table
+            datatable
+            id="datatableFormacion"
+            [dtOptions]="dtOptions[1]"
+            [dtTrigger]="dataTableTriggerFormacion"
+            class="file-manager file-manager-list d-none table-responsive"
+          >
+            <thead>
+              <tr>
+                <th>#</th>
+
+                <th>{{ "UserName" | translate }}</th>
+
+                <th>Puesto</th>
+                <th>Tiempo</th>
+                <th>Amarilla</th>
+                <th>Roja</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let jugador of partido.jugadores; let i = index">
+                <td>{{ i + 1 }}</td>
+
+                <td>
+                  {{ jugador.firstName + " " + jugador.lastName }}
+                </td>
+
+                <td>{{ jugador.posicion }}</td>
+                <td>
+                  <input
+                    (keypress)="numberOnly($event)"
+                    [(ngModel)]="jugador.tiempoJuegoEditar"
+                  />
+                </td>
+                <td>
+                  <input
+                    (keypress)="numberOnly($event)"
+                    [(ngModel)]="jugador.amarilla"
+                  />
+                </td>
+                <td>
+                  <input
+                    (keypress)="numberOnly($event)"
+                    [(ngModel)]="jugador.roja"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</fa-layout>

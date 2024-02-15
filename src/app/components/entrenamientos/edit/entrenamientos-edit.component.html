@@ -1,0 +1,217 @@
+<fa-layout>
+  <!-- Page Header -->
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">Entrenamiento</span>
+      <h3 class="page-title">Editar Entrenamiento</h3>
+    </div>
+  </div>
+  <!-- End Page Header -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Add New Post Form -->
+      <div class="card card-small mb-3">
+        <div class="card-body">
+          <form class="add-new-post">
+            <input class="form-control form-control-lg mb-3" type="text" placeholder="Descripción del entrenamiento"
+              [(ngModel)]="titulo" name="titulo" />
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <i class="material-icons mr-1 mt-0">calendar_today</i><span class="mr-1 mt-1">Fecha
+                  Entrenamiento:</span>
+                <input type="date" class="form-control col-md-6" [(ngModel)]="date" name="date" />
+              </div>
+
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Scrum:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="scrum" name="scrum" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Salidas:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="salidas" name="salidas" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Line:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="line" name="line" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Juego aéreo:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="juegoAereo" name="juegoAereo" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Tackle:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="tackle" name="tackle" />
+              </div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Organización defensiva:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="organizacionDefensiva" name="organizacionDefensiva" />
+              </div>
+
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Ruck:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="ruck" name="ruck" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Juego con el pie:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="juegoConElPie" name="juegoConElPie" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Duelo:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="duelo" name="duelo" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Toma de decisiones</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="tomaDecisiones" name="tomaDecisiones" />
+              </div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Movimiento gral del juego:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="movimientoGralJuego" name="movimientoGralJuego" />
+              </div>
+              <!-- <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Pase:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)"  class="form-control col-md-6" [(ngModel)]="pase" name="pase" />
+
+              </div>
+              -->
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Análisis de video:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="analisisVideo" name="analisisVideo" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Entrenamiento mental:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="entrenamientoMental" name="entrenamientoMental" />
+              </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Lanzamientos al Line</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="lanzamientoLine" name="lanzamientoLine" />
+              </div>
+              <div class="form-group col-md-3">
+                <span class="mr-1 mt-1">Estructuras de juego:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="estructurasJuego" name="estructurasJuego" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Pase al 9:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="paseNueve" name="paseNueve" />
+              </div>
+
+              <div class="form-group col-md-2">
+                <span class="mr-1 mt-1">Reglamento:</span>
+                <input type="text" placeholder="0" (keypress)="numberOnly($event)" class="form-control col-md-6"
+                  [(ngModel)]="reglamento" name="reglamento" />
+              </div>
+
+
+            </div>
+            <button type="button" class="btn btn-accent" [disabled]="updateButon.isDisabled"
+              (click)="saveEntrenamiento($event)" #updateButon>
+              Guardar
+              <i *ngIf="updateButon.isLoading" class="fas fa-circle-notch fa-spin ml-1"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- / Add New Post Form -->
+      <div class="row">
+        <div class="col-8 mb-4">
+          <div class="card card-small lo-stats">
+            <div class="card-title p-0 text-center mt-4">
+              <h5>Jugadores</h5>
+            </div>
+            <div class="card-body p-0">
+              <table datatable [dtOptions]="dataTableOptions" [dtTrigger]="dataTableTrigger"
+                class="file-manager file-manager-list d-none table-responsive">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>Puesto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of allUsers | async">
+                    <td>
+                      <input type="checkbox" name="websitecheck" (change)="changed(user)" [checked]="user.isChecked"
+                        value="{{ user.isChecked }}" />
+                    </td>
+                    <td>
+                      {{ user.lastName + " " + user.firstName }}
+                    </td>
+                    <td>
+                      {{ user.posicion }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 mb-4">
+          <div class="card card-small lo-stats">
+            <div class="card-title p-0 text-center mt-4">
+              <h5>Asistencia</h5>
+            </div>
+
+            <div class="card-body p-0">
+              <table datatable [dtOptions]="dataTableOptionsPresentes" [dtTrigger]="dataTableTriggerPresentes"
+                class="file-manager file-manager-list d-none table-responsive">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre Completo</th>
+                    <th>Puesto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let jugador of jugadoresAsistencia; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>
+                      {{ jugador.lastName + " " + jugador.firstName }}
+                    </td>
+                    <td>
+                      {{ jugador.puesto }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-12"></div>
+  </div>
+</fa-layout>

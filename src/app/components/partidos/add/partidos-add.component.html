@@ -1,0 +1,98 @@
+<fa-layout>
+  <!-- Page Header -->
+
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">Partido</span>
+
+      <h3 class="page-title">Nuevo Partido</h3>
+    </div>
+  </div>
+
+  <!-- End Page Header -->
+
+  <div class="row">
+    <div class="col-lg-9 col-md-12">
+      <!-- Add New Post Form -->
+
+      <div class="card card-small mb-3">
+        <div class="card-body">
+          <form class="add-new-post">
+            <input
+              class="form-control form-control-lg mb-3"
+              type="text"
+              placeholder="Nombre Rival"
+              [(ngModel)]="title"
+              name="title"
+            />
+
+            <input
+              class="form-control form-control-lg mb-3"
+              type="text"
+              placeholder="Cancha"
+              [(ngModel)]="cancha"
+              name="cancha"
+            />
+
+            <div class="form-group col-md-6">
+              <label for="fecha">Fecha</label>
+
+              <div class="input-group input-group-seamless">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="material-icons">calendar_today</i>
+                  </div>
+                </div>
+
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  [(ngModel)]="date"
+                  data-date-format="DD MMMM YYYY"
+                  name="date"
+                />
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="displayEmail">Equipos</label>
+
+              <select
+                class="custom-select"
+                [(ngModel)]="selectedEquipo"
+                name="equipo"
+              >
+                <option
+                  *ngFor="let equipo of equiposObservable | async"
+                  [value]="equipo.id"
+                >{{ equipo.title }}</option>
+              </select>
+            </div>
+
+            <!-- <div id="editor-container" class="add-new-post__editor mb-1"></div> -->
+          </form>
+
+          <button
+            class="btn btn-sm btn-accent ml-auto"
+            [disabled]="isSubmitButtonsDisabled || !title?.length || !date?.length"
+            (click)="publishPartido($event)"
+            #publishButton
+          >
+            <i class="material-icons">file_copy</i>
+
+            Guardar
+
+            <i
+              *ngIf="isLoading"
+              class="fas fa-circle-notch fa-spin ml-1"
+            ></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- / Add New Post Form -->
+    </div>
+
+  </div>
+</fa-layout>

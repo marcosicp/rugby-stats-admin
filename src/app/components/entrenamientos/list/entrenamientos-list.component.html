@@ -1,0 +1,149 @@
+<fa-layout>
+  <!-- Page Header -->
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">Entrenamientos</span>
+      <h3 class="page-title">Listado</h3>
+    </div>
+  </div>
+  <!-- End Page Header -->
+  <fa-loading-indicator
+    [show]="isLoading"
+    [center]="true"
+  ></fa-loading-indicator>
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card card-small lo-stats">
+        <div class="card-body p-0">
+          <table
+            datatable
+            [dtOptions]="dataTableOptions"
+            [dtTrigger]="dataTableTrigger"
+            class="file-manager file-manager-list d-none table-responsive"
+          >
+            <thead>
+              <tr>
+                <!-- <th class="hide-sort-icons"></th>
+                <th class="text-left">{{ 'PostTitle' | translate }}</th> -->
+                <th>Fecha</th>
+                <!-- <th>Titulo</th> -->
+                <th>Presentes</th>
+                <!-- <th>Ausentes</th> -->
+                <!-- <th>Cancha</th> -->
+                <!-- <th>{{ 'Categories' | translate }}</th>
+                <th>{{ 'PostCreatedAt' | translate }}</th>
+                <th>{{ 'PostUpdatedAt' | translate }}</th> -->
+                <!-- <th *ngIf="currentUser?.isAdmin()">{{ 'PostAuthor' | translate }}</th> -->
+                <th class="text-right hide-sort-icons">
+                  {{ "Actions" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entrenamiento of allEntrenamientos | async">
+                <td>{{ entrenamiento.date | shortdate }}</td>
+                <!-- <td>
+                  {{ entrenamiento.countPresentes - entrenamiento.jugadores.length }}
+                </td> -->
+                <td>
+                  {{ entrenamiento.countPresentes }}
+                </td>
+
+                <td class="text-right">
+                  <div
+                    class="btn-group btn-group-sm"
+                    role="group"
+                    aria-label="Table row actions"
+                  >
+                    <button
+                      *ngIf="entrenamiento.isTranslatable"
+                      type="button"
+                      class="btn btn-white active-light"
+                      title="{{ 'Translate' | translate }}"
+                      [routerLink]="
+                        navigation.getRouterLink(
+                          'partidos',
+                          'translate',
+                          entrenamiento.id
+                        )
+                      "
+                    >
+                      <i class="material-icons">translate</i>
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-white active-light"
+                      title="{{ 'Edit' | translate }}"
+                      [routerLink]="
+                        navigation.getRouterLink(
+                          'entrenamientos',
+                          'edit',
+                          entrenamiento.id
+                        )
+                      "
+                    >
+                      <i class="material-icons">edit</i>
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      title="{{ 'Delete' | translate }}"
+                      data-toggle="modal"
+                      data-target="#deleteModal"
+                      (click)="selectedEntrenamiento = entrenamiento.titulo"
+                    >
+                      <i class="material-icons">delete_forever</i>
+                    </button>
+                   
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</fa-layout>
+
+<!-- Delete Modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar Entrenamiento</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div
+        class="modal-body"
+        innerHTML="{{ 'Eliminar ' + selectedEntrenamiento }}"
+      ></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="deleteEntrenamiento(selectedEntrenamiento)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

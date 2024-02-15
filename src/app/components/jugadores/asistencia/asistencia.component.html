@@ -1,0 +1,37 @@
+
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <main class="main-content col">
+      <div class="main-content-container container-fluid px-4 my-auto h-100">
+        <div class="row no-gutters h-100">
+          <div class="col-lg-3 col-md-5 auth-form mx-auto my-auto">
+            <div *ngIf="error?.length" class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismissError($event)">
+                <span aria-hidden="true">×</span>
+              </button>
+              <i class="fa fa-exclamation mx-2"></i>
+              {{ error }}
+            </div>
+            <div class="card">
+              <div class="card-body" style="    box-shadow: inset 0 4px 0 0 #000000;">
+                <img class="auth-form__logo d-table mx-auto mb-3" [src]="logo | escapeUrl" alt="FireAdmin">
+                <h5 class="auth-form__title text-center mb-4">Asistencia - M16</h5>
+                <form (ngSubmit)="onSubmit($event, submitButton)" #editUserForm>
+                  <div class="form-group">
+                    <label for="inputEmail">DNI</label>
+                    <input type="text" class="form-control" id="dni" (keypress)="numberOnly($event)" name="dni" aria-describedby="dniHelp" placeholder="Ingrese DNI" [(ngModel)]="dni">
+                  </div>
+               
+
+                  <button type="submit" (click)="onSubmit($event, editUserForm)"  class="btn btn-pill btn-black d-table mx-auto" #submitButton>Confirmar</button>
+                </form>
+              </div>
+            
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

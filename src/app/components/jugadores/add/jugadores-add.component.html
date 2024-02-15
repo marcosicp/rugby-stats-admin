@@ -1,0 +1,95 @@
+<fa-layout>
+  <!-- Page Header -->
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">Jugadores</span>
+      <h3 class="page-title">Nuevo Jugador</h3>
+    </div>
+  </div>
+  <!-- End Page Header -->
+  <div class="row">
+    <div class="col-12">
+      <!-- Add New Post Form -->
+      <div class="card card-small mb-3">
+        <div class="card-header border-bottom">
+          <h6 class="m-0">Ficha de jugador</h6>
+        </div>
+        <div class="card-body">
+          <form class="add-new-user" #addJugadorForm>
+            <div class="form-row">
+              <div class="col-lg-8">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="firstName">{{ 'FirstName' | translate }}</label>
+                    <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" name="firstName" [class.is-invalid]="addJugadorForm.isSubmitted && !firstNameInput.checkValidity()" required #firstNameInput>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="lastName">{{ 'LastName' | translate }}</label>
+                    <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" name="lastName" [class.is-invalid]="addJugadorForm.isSubmitted && !lastNameInput.checkValidity()" required #lastNameInput>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="dni">DNI</label>
+                    <input type="text" class="form-control" id="dni" [(ngModel)]="dni" name="dni" [class.is-invalid]="addJugadorForm.isSubmitted && !dniInput.checkValidity()" required #dniInput>
+                  </div>
+                  <!-- <div class="form-group col-md-6">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" [(ngModel)]="direccion" name="direccion" [class.is-invalid]="addJugadorForm.isSubmitted && !direccionInput.checkValidity()" required #direccionInput>
+                  </div> -->
+
+                  <!-- <div class="form-group col-md-6">
+                    <label for="emailAddress">{{ 'Email' | translate }}</label>
+                    <div class="input-group input-group-seamless">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="material-icons">&#xE0BE;</i>
+                        </div>
+                      </div>
+                      <input type="email" class="form-control" id="emailAddress" [(ngModel)]="email" name="email" [class.is-invalid]="addJugadorForm.isSubmitted && !emailInput.checkValidity()" required #emailInput>
+                    </div>
+                  </div> -->
+                  <!-- <div class="form-group col-md-6">
+                    <label for="password">{{ 'Password' | translate }}</label>
+                    <div class="input-group input-group-seamless">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="material-icons">lock</i>
+                        </div>
+                      </div>
+                      <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" [class.is-invalid]="addJugadorForm.isSubmitted && !passwordInput.checkValidity()" minlength="6" required #passwordInput>
+                    </div>
+                  </div> -->
+                  <div class="form-group col-md-6">
+                    <label for="birthDate">{{ 'BirthDate' | translate }}</label>
+                    <div class="input-group input-group-seamless">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="material-icons">calendar_today</i>
+                        </div>
+                      </div>
+                      <input type="date" class="form-control" id="birthDate" [(ngModel)]="birthDate" name="birthDate">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="dni">Posicion</label>
+                    <input type="text" class="form-control" id="dni" [(ngModel)]="posicion" name="posicion" [class.is-invalid]="addJugadorForm.isSubmitted && !posicionInput.checkValidity()" required #posicionInput>
+                  </div>
+
+                </div>
+              </div>
+             
+            </div>
+           
+            <button type="submit" class="btn btn-accent" [disabled]="addButon.isDisabled" (click)="addJugador($event, addJugadorForm)" #addButon>
+              Agregar Jugador <i *ngIf="addButon.isLoading" class="fas fa-circle-notch fa-spin ml-1"></i>
+            </button>
+            
+          </form>
+          <!-- <input type="file" (change)="onFileSelected($event)"> -->
+        </div>
+      </div>
+      <!-- / Add New Post Form -->
+    </div>
+  </div>
+</fa-layout>

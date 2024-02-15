@@ -1,0 +1,33 @@
+<fa-layout>
+  <!-- Page Header -->
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">Divisiones</span>
+      <h3 class="page-title">Agregar División</h3>
+    </div>
+  </div>
+  <!-- End Page Header -->
+  <div class="row">
+    <div class="col-lg-9 col-md-12">
+      <!-- Add New Page Form -->
+      <div class="card card-small mb-3">
+        <div class="card-body">
+          <form class="add-new-page">
+            <input class="form-control form-control-lg" type="text" placeholder="Nombre División" [(ngModel)]="title" name="title">
+          </form>
+        </div>
+        <div class="card-footer border-top d-flex">
+          <div class="my-auto ml-auto">
+            <button class="btn btn-sm btn-accent m-auto" [disabled]="!title?.length || addButton.isLoading" (click)="addDivision($event)" #addButton>
+              <i class="material-icons">note_add</i> Agregar <i *ngIf="addButton.isLoading" class="fas fa-circle-notch fa-spin ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <div class="col-lg-3 col-md-12">
+      
+    </div>
+  </div>
+</fa-layout>
