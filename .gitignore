@@ -53,3 +53,4 @@ functions/lib/index.js.map
 functions/ui-debug.log
 .firebase/*
 functions/src/firebaseadminsdk.json
+package-lock.json
