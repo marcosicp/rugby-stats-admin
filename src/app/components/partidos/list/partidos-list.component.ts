@@ -42,7 +42,7 @@ import { EquiposService } from "../../../services/collections/equipos.service";
 export class PartidosListComponent implements OnInit, OnDestroy {
   allPartidos: Observable<Partido[]>;
   selectedPartido: Partido = null;
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective)
   private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings = {
     responsive: true,

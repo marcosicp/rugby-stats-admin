@@ -61,7 +61,7 @@ export class EntrenamientosEditComponent implements OnInit, OnDestroy {
   allUsers: Observable<Jugador[]>;
   jugadoresAsistencia: Jugador[] = [];
   selectedUser: Jugador = null;
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective)
   private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings | any = {
     responsive: true,

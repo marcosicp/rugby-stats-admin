@@ -24,7 +24,7 @@ export class JugadoresListComponent implements OnInit, OnDestroy {
 
   allJugadores: Observable<Jugador[]>;
   selectedUser: Jugador = null;
-  @ViewChild(DataTableDirective, {static : false}) private dataTableElement: DataTableDirective;
+  @ViewChild(DataTableDirective) private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings|any = {
     responsive: true,
     aaSorting: []

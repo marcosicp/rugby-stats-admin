@@ -31,7 +31,7 @@ import { Division } from "src/app/models/collections/division.model";
 export class EquiposListComponent implements OnInit, OnDestroy {
   allEquipos: Observable<Equipo[]>;
   selectedPage: Equipo = null;
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective)
   private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings | any = {
     responsive: true,

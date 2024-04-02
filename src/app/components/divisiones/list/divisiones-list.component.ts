@@ -33,7 +33,7 @@ import { User } from "src/app/models/collections/user.model";
 export class DivisionesListComponent implements OnInit, OnDestroy {
   allEquipos: Observable<Division[]>;
   selectedPage: Division = null;
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective)
   private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings | any = {
     responsive: true,

@@ -24,7 +24,7 @@ export class TranslationsComponent implements OnInit, OnDestroy, AfterViewInit {
   allLanguages: Language[] = [];
   allTranslations: Observable<TranslationData[]>;
   selectedTranslation: TranslationData = null;
-  @ViewChild(DataTableDirective, {static : false}) private dataTableElement: DataTableDirective;
+  @ViewChild(DataTableDirective) private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings|any = {
     responsive: true,
     aaSorting: []

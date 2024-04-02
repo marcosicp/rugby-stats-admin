@@ -20,7 +20,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   allUsers: Observable<User[]>;
   selectedUser: User = null;
-  @ViewChild(DataTableDirective, {static : false}) private dataTableElement: DataTableDirective;
+  @ViewChild(DataTableDirective) private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings|any = {
     responsive: true,
     aaSorting: []

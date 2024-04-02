@@ -22,7 +22,7 @@ import { Entrenamiento } from "../../../models/collections/entrenamiento.model";
 export class EntrenamientosListComponent implements OnInit, OnDestroy {
   allEntrenamientos: Observable<Entrenamiento[]>;
   selectedPartido: Entrenamiento = null;
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective)
   private dataTableElement: DataTableDirective;
   dataTableOptions: DataTables.Settings | any = {
     responsive: true,
