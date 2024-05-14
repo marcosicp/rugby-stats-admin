@@ -11,8 +11,8 @@ export class DateTimePipe extends DatePipe implements PipeTransform {
     super(i18nService.getCurrentLanguage());
   }
   
-  transform(value: any, format?: string, timezone?: string, locale?: string): string {
-    return super.transform(value, format || 'dd MMMM yyyy HH:mm', timezone, locale || this.i18nService.getCurrentLanguage());
-  }
+  // transform(value: any, format?: string, timezone?: string, locale?: string): string {
+  //   return super.transform(value, format || 'dd MMMM yyyy HH:mm', timezone, locale || this.i18nService.getCurrentLanguage());
+  // }
 
 }

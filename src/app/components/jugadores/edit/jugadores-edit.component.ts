@@ -34,6 +34,7 @@ export class JugadoresEditComponent implements OnInit, OnDestroy {
   tarjetasAmarillas: number=0;
   lesionado: boolean;
   posicion: string;
+  division: string;
   obraSocial: string;
   datosFamiliares: {padre: string, madre:string, telefonoMadre:string, telefonoPadre:string};
   dni:string;
@@ -123,6 +124,7 @@ export class JugadoresEditComponent implements OnInit, OnDestroy {
         dni:this.dni,
         lesionado: false,
         posicion: this.posicion,
+        divisionId: this.division,
         obraSocial: this.obraSocial,
         datosFamiliares: {padre: this.padre, madre: this.madre, telefonoMadre: this.telefonoMadre==undefined ? "":this.telefonoMadre, telefonoPadre: this.telefonoPadre ==undefined?"":this.telefonoPadre},
         tackles: this.tackles,

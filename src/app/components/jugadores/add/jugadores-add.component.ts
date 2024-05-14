@@ -8,7 +8,10 @@ import { NavigationService } from "../../../services/navigation.service";
 import { JugadoresService } from "../../../services/collections/jugadores.service";
 import { JugadorRole } from "../../../models/collections/jugador.model";
 import * as Papa from "papaparse";
-import * as XLSX from "xlsx";
+import { DivisionesService } from "src/app/services/collections/divisiones.service";
+import { Division } from "src/app/models/collections/division.model";
+import { map } from "rxjs/operators";
+// import * as XLSX from "xlsx";
 
 @Component({
   selector: "fa-jugadores-add",
@@ -21,16 +24,21 @@ export class JugadoresAddComponent implements OnInit {
   direccion: string;
   dni: string;
   fichaMedica: boolean;
+  selectedDivision: string;
+
+  divisionesObservable: any;
   email: string;
   // password: string;
   birthDate: string;
   role: JugadorRole;
   allRoles: object | any = {};
+  allDivisiones: object | any = {};
   bio: string;
   private avatar: File;
   avatarSrc: string | ArrayBuffer;
   tackles: number;
   posicion: string;
+  // division: string;
   tiempoJuego: number;
   tarjetasAmarillas: number;
   csvData: any[] = [];
@@ -39,12 +47,22 @@ export class JugadoresAddComponent implements OnInit {
 
   constructor(
     private jugadores: JugadoresService,
+    private divisiones: DivisionesService,
     private alert: AlertService,
     private i18n: I18nService,
     private navigation: NavigationService
   ) {}
 
   ngOnInit() {
+    this.divisionesObservable = this.divisiones.getAll().pipe(
+      map((_equipo: Division[]) => {
+
+        return _equipo.sort(
+          (a: Division, b: Division) => b.createdAt - a.createdAt
+        );
+      })
+    );
+    this.divisionesObservable.subscribe();
     this.allRoles = this.jugadores.getAllRoles();
     this.role = JugadorRole.Guest;
     this.avatar = null;
@@ -74,17 +92,17 @@ export class JugadoresAddComponent implements OnInit {
     reader.onload = (e: any) => {
       /* create workbook */
       const binarystr: string = e.target.result;
-      const wb: XLSX.WorkBook = XLSX.read(binarystr, { type: "binary" });
+      // const wb: XLSX.WorkBook = XLSX.read(binarystr, { type: "binary" });
 
       /* selected the first sheet */
-      const wsname: string = wb.SheetNames[0];
-      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+      // const wsname: string = wb.SheetNames[0];
+      // const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
-      /* save data */
-      const data = XLSX.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
-      console.log(data); // Data will be logged in array format containing objects
+      // /* save data */
+      // const data = XLSX.utils.sheet_to_json(ws); // to get 2d array pass 2nd parameter as object {header: 1}
+      // console.log(data); // Data will be logged in array format containing objects
 
-      this.jugadores.addMany(data);
+      // this.jugadores.addMany(data);
     };
   }
 
@@ -101,6 +119,7 @@ export class JugadoresAddComponent implements OnInit {
         target.isLoading = false;
       };
       startLoading();
+      debugger;
       // Add user
       this.jugadores
         .add({
@@ -109,6 +128,7 @@ export class JugadoresAddComponent implements OnInit {
           email: "",
           lesionado: false,
           posicion: this.posicion,
+          divisionId: this.selectedDivision,
           tackles: 0,
           tiempoJuego: 0,
           datosFamiliares: this.datosFamiliares,

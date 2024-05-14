@@ -8,7 +8,7 @@ import { NavigationService } from "../../../services/navigation.service";
 import { JugadoresService } from "../../../services/collections/jugadores.service";
 import { JugadorRole } from "../../../models/collections/jugador.model";
 import * as Papa from "papaparse";
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 

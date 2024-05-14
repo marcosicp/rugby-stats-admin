@@ -27,9 +27,6 @@ export interface Partido {
   createdBy?: string;
   author?: string|Observable<string>;
   updatedBy?: string;
-  // translationId?: string;
-  // translations?: PostTranslation; // used to store translations on object fetch
-  // isTranslatable?: boolean;
 }
 
 export enum PartidoStatus {

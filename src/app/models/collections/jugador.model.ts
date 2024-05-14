@@ -11,6 +11,7 @@ export interface Jugador {
   dni:string;
   email: string;
   posicion: string;
+  divisionId: string;
   obraSocial: string;
   datosFamiliares: {padre: string, madre:string, telefonoMadre:string, telefonoPadre:string};
   tiempoJuego: number;
